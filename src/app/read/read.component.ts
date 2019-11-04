@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MovieService } from '../services/movie.service';
+import { MovieService } from '../Services/movie.service';
 
 @Component({
   selector: 'app-read',
@@ -7,18 +7,15 @@ import { MovieService } from '../services/movie.service';
   styleUrls: ['./read.component.css']
 })
 export class ReadComponent implements OnInit {
-
-  myMovies: any = [];
-
+  MyMovies: any = [];
   constructor(private movieService: MovieService) { }
 
   ngOnInit() {
     this.movieService.getMovieInformation().subscribe((data) => {
-      this.myMovies = data.movies;
-      console.log(this.myMovies);
-  });
-}
-
+      this.MyMovies = data.movies;
+      console.log(this.MyMovies);
+    })
   }
 
+}
 
