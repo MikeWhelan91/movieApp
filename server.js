@@ -58,6 +58,28 @@ app.delete('/api/movies/:id', (req,res) =>{
   })
 })
 
+app.get('/api/movies/:id', (req, res, next) => {
+  console.log(req.params.id);
+  MovieModel.findById(req.params.id,
+    function (err, data) {
+      res.json(data);
+    });
+})
+app.put('/api/movies/:id', function (req, res) {
+  console.log("Update Movie " + req.params.id);
+  console.log(req.body);
+  console.log(req.body.title);
+  console.log(req.body.year);
+  console.log(req.body.poster);
+  MovieModel.findByIdAndUpdate(req.params.id, req.body, { new: true },
+    function (err, data) {
+      res.send(data);
+    })
+})
+
+
+
+
 app.post('/api/movies', (req,res) =>{
 console.log('post Sucessfull');
 console.log(req.body)
@@ -82,6 +104,10 @@ app.get('/api/movies/:id',(req,res)=>{
     res.json(data);
   })
 })
+
+
+
+        
 
 app.listen(PORT, function () {
   console.log('Server is running on Port: ', PORT);
