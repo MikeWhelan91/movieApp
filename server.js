@@ -105,6 +105,10 @@ app.get('/api/movies/:id',(req,res)=>{
   })
 })
 
+app.use("/", express.static(path.join(__dirname, "angular")));
+app.get('/', function(req, res){
+res.sendFile(path.join(__dirname, "angular", "index.html"));
+})
 
 
         
